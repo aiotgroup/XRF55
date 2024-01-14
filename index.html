@@ -1,504 +1,1358 @@
 <!DOCTYPE html>
-<html>
+<html class=" w-mod-ix">
+
 <head>
-<title>XYZ55: A temporary dataset for human indoor motion analysis</title>
-<style>
-body {
-		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-		font-weight:300;
-		font-size:17px;
-		margin-left: auto;
-		margin-right: auto;
-		width: 1100px;
-	}
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <style>
+        .wf-force-outline-none[tabindex="-1"]:focus {
+            outline: none;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
-	h1 {
-		font-weight:300;
-        font-size: 30px;
-	}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WNGS4SZ3C7"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-WNGS4SZ3C7');
+    </script>
 
-	.disclaimerbox {
-		background-color: #eee;
-		border: 1px solid #eeeeee;
-		border-radius: 10px ;
-		-moz-border-radius: 10px ;
-		-webkit-border-radius: 10px ;
-		padding: 20px;
-	}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>XRF55: A Radio Frequency Dataset for Human Indoor Action Analysis</title>
+    <link rel="stylesheet" href="images/bootstrap.min.css">
+    <link href="images/css.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="images/Highlight-Clean.css">
+    <link rel="stylesheet" href="images/styles.css">
 
-	video.header-vid {
-		height: 140px;
-		border: 1px solid black;
-		border-radius: 10px ;
-		-moz-border-radius: 10px ;
-		-webkit-border-radius: 10px ;
-	}
+    <link rel="manifest" href="images/site.webmanifest">
 
-	img.header-img {
-		height: 140px;
-		border: 1px solid black;
-		border-radius: 10px ;
-		-moz-border-radius: 10px ;
-		-webkit-border-radius: 10px ;
-	}
+    <meta property="og:site_name" content="XRF55">
+    <meta property="og:title" content="XRF55: A Radio Frequency Dataset for Human Indoor Action Analysis">
+    <meta property="og:description" content="XRF55: A Radio Frequency Dataset for Human Indoor Action Analysis, 2024.">
+    <meta property="og:url" content="https://text2cinemagraph.github.io/website/">
 
-	img.rounded {
-		border: 1px solid #eeeeee;
-		border-radius: 10px ;
-		-moz-border-radius: 10px ;
-		-webkit-border-radius: 10px ;
-	}
-
-	a:link,a:visited
-	{
-		color: #1367a7;
-		text-decoration: none;
-	}
-	a:hover {
-		color: #208799;
-	}
-
-	td.dl-link {
-		height: 160px;
-		text-align: center;
-		font-size: 22px;
-	}
-
-	.layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
-		box-shadow:
-		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
-		        5px 5px 0 0px #fff, /* The second layer */
-		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
-		        10px 10px 0 0px #fff, /* The third layer */
-		        10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
-		        15px 15px 0 0px #fff, /* The fourth layer */
-		        15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
-		        20px 20px 0 0px #fff, /* The fifth layer */
-		        20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
-		        25px 25px 0 0px #fff, /* The fifth layer */
-		        25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
-		margin-left: 10px;
-		margin-right: 45px;
-	}
-
-
-	.layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
-		box-shadow:
-		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
-		        5px 5px 0 0px #fff, /* The second layer */
-		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
-		        10px 10px 0 0px #fff, /* The third layer */
-		        10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
-		margin-top: 5px;
-		margin-left: 10px;
-		margin-right: 30px;
-		margin-bottom: 5px;
-	}
-
-	.vert-cent {
-		position: relative;
-	    top: 50%;
-	    transform: translateY(-50%);
-	}
-
-	hr
-	{
-		border: 0;
-		height: 1px;
-		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
-	}
-    table td, table td * {
-        vertical-align: top;
-    }
-	
-	    /* 幻灯片容器 */
-.slideshow-container {
-  max-width: 560px;
-  position: relative;
-  margin: auto;
-}
- 
-/* 下一张 & 上一张 按钮 */
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  margin-top: -22px;
-  padding: 16px;
-  color: rgb(102, 102, 102);
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 5px 0 0 5px;
-}
- /* 定位 "下一张" 按钮靠右 */
-.prev {
-  left: 0;
-}
-/* 定位 "下一张" 按钮靠右 */
-.next {
-  right: 0;
-  border-radius: 0 5px 5px 0;
-}
- 
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
-}
- 
-/* 标题文本 */
-.text {
-  color: #f2f2f2;
-  font-size: 15px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
-}
- 
-/* 数字文本 (1/3 等) */
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
- 
-/* 标记符号 */
-.dot {
-  cursor:pointer;
-  height: 13px;
-  width: 13px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
- 
-.active, .dot:hover {
-  background-color: #717171;
-}
- 
-/* 淡出动画 */
-.fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
- 
-@-webkit-keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
-}
- 
-@keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
-}
-</style>
+    
 </head>
+
 <body>
+    <div class="highlight-clean" style="padding-bottom: 20px;">
+        <div class="container" style="padding-bottom: 10px; max-width: 1200px;">
+            <h1 class="text-center"><b>XRF55: A Radio Frequency Dataset for Human Indoor Action Analysis</b></h1>
+        </div>
+        <div class="container" style="max-width: 900px; display: flex; flex-direction: column;">
+            <div style="display: flex; align-items: center; justify-content: center;">
+                <div class="row authors" style="padding-bottom: 25px; display: flex; align-items: center; justify-content: space-around; width: 600px;">
+                    <h5 class="text-center"><a class="text-center" href="#">Fei Wang</a>
+                    </h5>
+                    <h5 class="text-center">
+                        <a class="text-center" href="#">Yizhe Lv</a>
+                    </h5>
+                    <h5 class="text-center">
+                        <a href="#">Mengdie Zhu</a>
+                    </h5>
+                    <h5 class="text-center">
+                        <a class="text-center" href="#">Han Ding</a>
+                    </h5>
+                </div>
+            </div>
+            <div class="row authors institute">
+                <div class="col-sm-12">
+                    <h4 class="text-center">
+                        XJTU &nbsp&nbsp 
+                        AIOT Group
+                    </h4>
+                </div>
+            </div>
+            <div class="row authors institute">
+                <div class="col-sm-12">
+                    <h3 class="text-center"><strong>The Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies, IMWUT (August 2023)</strong>
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="buttons" style="margin-bottom: 8px;">
+            <a class="btn btn-light" role="button" href="#">
+                <svg style="width:24px;height:24px;margin-left:-12px;margin-right:12px" viewBox="0 0 24 24">
+                    <path fill="currentColor"
+                        d="M16 0H8C6.9 0 6 .9 6 2V18C6 19.1 6.9 20 8 20H20C21.1 20 22 19.1 22 18V6L16 0M20 18H8V2H15V7H20V18M4 4V22H20V24H4C2.9 24 2 23.1 2 22V4H4M10 10V12H18V10H10M10 14V16H15V14H10Z">
+                    </path>
+                </svg>Paper
+            </a>
+            <a class="btn btn-light" role="button" href="#">
+                <svg style="width:24px;height:24px;margin-left:-12px;margin-right:12px" width="24px" height="24px" viewBox="0 0 475 531"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path>
+                </svg>
+                Code
+            </a>
+            <a class="btn btn-light" aria-disabled="true" role="button" href="#">
+                <svg version="1.1" id="Icons" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 32 32" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <style type="text/css"> .st0{fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;} </style> <path class="st0" d="M26,3H9C7.3,3,6,4.3,6,6v0c0,1.7,1.3,3,3,3h17v20"></path> <path class="st0" d="M26,29H9c-1.7,0-3-1.3-3-3v0V6"></path> <line class="st0" x1="26" y1="6" x2="9" y2="6"></line> <line class="st0" x1="10" y1="9" x2="10" y2="29"></line> </g></svg>
+                &nbsp;&nbsp;Tutorial
+            </a>
+            <a class="btn btn-light" role="button" href="#" onclick="scrollToSection('section1')">
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 15.9853L15.182 12.8033L14.1213 11.7427L12.75 13.114L12.75 5.25L11.25 5.25L11.25 13.114L9.8787 11.7427L8.81804 12.8033L12 15.9853ZM12 13.864L12 13.864L12.0001 13.864L12 13.864Z" fill="#080341"></path> <path d="M18 17.25L18 18.75L6 18.75L6 17.25L18 17.25Z" fill="#080341"></path> </g></svg>
+                Download dataset
+            </a>
+        </div>
+    </div>
 
-<center>
-	<br>
-    <span style="font-size:35px">XYZ55: A temporary dataset for human indoor motion analysis</span><br><br>
-    <table align=center width=600px>
-	  			  <tr>
-	  	              <td align=center width=100px>
-	  					<center>
-	  						<span style="font-size:18px"><a href="https://github.com/WhisperYi/XRF55">Yizhe Lv</a></span>
-		  		  		</center>
-		  		  	  </td>
-	  	              <td align=center width=100px>
-	  					<center>
-	  						<span style="font-size:18px"><a href="https://github.com/WhisperYi/XRF55">Mengdie Zhu</a></span>
-		  		  		</center>
-		  		  	  </td>
-	  	              <td align=center width=100px>
-	  					<center>
-	  						<span style="font-size:18px"><a href="https://scholar.google.com/citations?user=LKPpmXQAAAAJ&hl=en">Fei Wang</a></span>
-		  		  		</center>
-		  		  	  </td>
-			  </table><br>
-     <span style="font-size:18px">Xi'an Jiaotong University, Shaanxi</span><br>
-     <span style="font-size:18px">In ICCV 2077</span><br><br>
-      <table align=center width=300px>
-	  			  <tr>
-	  	              <td align=center width=50px>
-	  					<center>
-	  						<span style="font-size:24px"><a href='https://github.com/WhisperYi/XRF55'>[Paper]</a>
-		  		  		</center>
-		  		  	  </td>
-	  	              <td align=center width=50px>
-	  					<center>
-	  						<span style="font-size:24px"><a href='https://github.com/WhisperYi/XRF55'>[GitHub]</a></span>
-		  		  		</center>
-		  		  	  </td>
-			  </table>
-</center>
-<br>	
-<table align=center width=850px>
-  			  <tr>
-  	              <td width=400px>
-  					<center>
-  	                	<a href="images/teaser_v3.jpg"><img class="" src = "images/teaser_v3.jpg" height="360px"></img></href></a><br>
-					</center>
-  	              </td>
-                </tr>
-  	              <td width=400px>
-  	                	<span style="font-size:14px"><i>XYZ55 includes 55 human indoor action classes which we categorize into 5 types: Human-Object Interaction, Human-Human Interaction, Fitness, Body Motion, and Human-Computer Interaction..</i>
-                 
-  	              </td>
+    <hr style="max-width: 1400px;">
+    <div class="container" style="max-width: 1400px;">
+        <div class="row teaser">
+            <div class="left-image">
+                <img src="./images/xrf hardware.png" alt="First Image" style="width: 100%;">
+            </div>
+            <div class="right-images">
+                <img src="./images/place1.png" alt="Second Image">
+                <img src="./images/place2.png" alt="Third Image">
+                <img src="./images/place3.png" alt="Fourth Image">
+                <img src="./images/place4.png" alt="Fifth Image">
+            </div>
+        </div>
+    </div>
 
-  		  </table>
-          
-          <table align=center width=850px>
-	  		  <center><h1>Abstract</h1></center>
-	  		  <tr>
-	  		  	<td>
-	  		    </td>
-	  		  </tr>
-			</table>
-				In recent years, there has been a proliferation of works on human action classification from depth sequences. These works generally present methods and/or feature representations for the classification of actions from sequences of 3D locations of human body joints and/or other sources of data, such as depth maps and RGB videos. This survey highlights motivations and challenges of this very recent research area by presenting technologies and approaches for 3D skeleton-based action classification. The work focuses on aspects such as data pre-processing, publicly available benchmarks and commonly used accuracy measurements. Furthermore, this survey introduces a categorization of the most recent works in 3D skeleton-based action classification according to the adopted feature representation.
-  		  <br><br>
-		  <hr>
+    <hr style="max-width: 1400px;">
+    <div class="container" style="max-width: 1400px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center" style="margin-bottom: 30px; margin-top: 10px;">Abstract</h2>
+                <p>
+                    Radio frequency (RF) devices such as Wi-Fi transceivers, radio frequency identification tags, and millimeter-wave radars have appeared in large numbers in daily lives. The presence and movement of humans can affect the propagation of RF signals, further, this phenomenon is exploited for human action recognition. Compared to camera solutions, RF approaches exhibit greater resilience to occlusions and lighting conditions, while also raising fewer privacy concerns in indoor scenarios. However, current works have many limitations, including the unavailability of datasets, insufficient training samples, and simple or limited action categories for specific applications, which seriously hinder the growth of RF solutions, presenting a significant obstacle in transitioning RF sensing research from the laboratory to a wide range of everyday life applications. To facilitate the transitioning, in this paper, we introduce and release a large-scale multiple radio frequency dataset, named XRF55, for indoor human action analysis. XRF55 encompasses 42.9K RF samples and 55 action classes of human-object interactions, human-human interactions, fitness, body motions, and human-computer instructions, collected from 39 subjects within 100 days. These actions were meticulously selected from 19 RF sensing papers and 16 video action recognition datasets. Each
+                    action is chosen to support various applications with high practical value, such as elderly fall detection, fatigue monitoring, domestic violence detection, etc. Moreover, XRF55 contains 23 RFID tags at 922.38MHz, 9 Wi-Fi links at 5.64GHz, one mmWave radar at 60-64GHz, and one Azure Kinect with RGB+D+IR sensors, covering frequency across decimeter wave, centimeter wave, and millimeter wave. In addition, we apply a mutual learning strategy over XRF55 for the task of action recognition. Unlike simple modality fusion, under mutual learning, three RF modalities are trained collaboratively and then work solely. We find these three RF modalities will promote each other. It is worth mentioning that, with synchronized Kinect, XRF55 also
+                    supports the exploration of action detection, action segmentation, pose estimation, human parsing, mesh reconstruction, etc., with RF-only or RF-Vision approaches. All data will be made publicly available soon.
+                </p>
+            </div>
+        </div>
+    </div>
+    <hr style="max-width: 1400px;">
+    <div class="container" style="max-width: 1400px; display: flex; justify-content: center;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center" style="margin-bottom: 30px; margin-top: 10px;">XRF55 human indoor action classes</h2>
+                <div style="display: flex; justify-content: center;">
+                    <p style="margin-bottom: 30px; margin-bottom: 30px; max-width: 1400px;">
+                        In all, XRF55 includes 55 human indoor action classes which we categorize into 5 types: Human-Object Interaction, Human-Human Interaction, Fitness, Body Motion, and Human-Computer Interaction.<br>
 
-			<center><h1>Paper</h1></center>
-			<table align="center" width="700" px="">
-			          <tbody><tr>
-			          <td><a href="https://github.com/WhisperYi/XRF55"><img class="layered-paper-big" style="height:175px" src="images/paper_pdf_thumb.png"></a></td>
-			          <td><br><br><br><span style="font-size:12pt">Yizhe Lv, Mengdie Zhu, Fei Wang</span><br>
-			          <b><span style="font-size:12pt">XYZ55: A temporary dataset for human indoor motion analysis</span></b><br>
-			          <span style="font-size:12pt">ICCV, 2077 (<a href="https://github.com/WhisperYi/XRF55">Paper</a>)</span>
-			          </td>
-								</tr>
-					</table>
-								<br>
-          <table align="center" width="600px">
-            <tbody>
-              <tr>
-                <td>
-                  <center>
-                    <span style="font-size:22px">
-                      <a href="./resources/bibtex_cvpr_pix2pix.txt" target="_blank">[bibtex]</a>
-                    </span>
-                  </center>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-			
-		  <br><br>
+                        &nbsp;&nbsp;• 15 Human-Object Interaction Actions. Whole-home daily: carrying weight, mopping the floor, using a phone, throwing something, picking something, putting something on the table; Kitchen: cutting something; Dress: wearing a hat, putting on clothing; Bathroom: blowing dry hair, combing hair, brushing teeth; Healthcare: drinking, eating, and smoking.<br>
 
-          <hr>
-          
-          <center><h1>Download our dataset</h1></center><br>	<br>	
+                        &nbsp;&nbsp;• 7 Human-Human Interaction Actions. Social actions: shaking hands, hugging, handing something to someone; Violence actions for applications of domestic violence and invasion detection: kicking someone, hitting someone with something, choking someone’s neck, and pushing someone.<br>
 
-  		  <table align=center width=800px>
-			  <tr><center>
-				<!-- <span style="font-size:28px">Code coming soon!</span></i>			  	 -->
-				<div style="width:1100px; text-align:center">
-					<span style="font-size:28px"><a href='https://github.com/WhisperYi/XRF55'>[Wi-Fi dataset]</a></span>&nbsp;&nbsp;
-					<span style="font-size:28px"><a href='https://github.com/WhisperYi/XRF55'>[RFID dataset]</a></span>&nbsp;&nbsp;
-                    <span style="font-size:28px"><a href='https://github.com/WhisperYi/XRF55'>[mmWave dataset]</a></span>&nbsp;&nbsp;
-                    <span style="font-size:28px"><a href='https://github.com/WhisperYi/XRF55'>[Kinect dataset]</a></span>
-				</div>
+                        &nbsp;&nbsp;• 8 Fitness Actions. With equipment: hula hooping, weightlifting, jumping rope; Without equipment: body weight squats, Tai Chi, boxing, jumping jack, and high leg lifting.<br>
+
+                        &nbsp;&nbsp;• 14 Body Motion Actions. Whole-home daily: waving, clapping hands, jumping, walking, turning, running, sitting down, standing up; Healthcare: falling on the floor, stretching, patting on the shoulder; Musical instruments: playing Er-Hu, playing Ukulele, playing drum.<br>
+                        
+                        &nbsp;&nbsp;• 11 Human-Computer Interaction Actions. Hand gestures: pushing, pulling, swiping left, swiping right, swiping up, swiping down, drawing a circle, drawing a cross; When hands are not free: foot stamping, shaking head, and nodding.
+                    </p>
+                </div>
+
+                <div class="containershadow"
+                    style="max-width: 90vw; overflow-y: scroll; display: flex; justify-content: center; height: 1024px;">
+                    <div id="singleconceptscroll" style="width: 90vw;">
+
+                        <div class=" row" style="display: flex; justify-content: center; margin-bottom: -30px;">
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: -2px;">Single Image</p>
+                                    <!-- <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./images/01_rgb.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video> -->
+                                    <video width="320" height="240" controls>
+                                        <source src="./images/01.mp4" type="video/mp4">
+                                         Your browser does not support the video tag.
+                                        </video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Ours</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./images/01_ra.avi"
+                                        style="max-width: 100%" type="video/avi"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Animating Landscape</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-AL/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Holynski et al.</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-Eulerian/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">SLR-SFS</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-SLR-SFS/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        
+
+                        <div class=" row" style="display: flex; justify-content: center; margin-bottom: -30px;">
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: -2px;">Single Image</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-7-1/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Ours</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-7-1/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Animating Landscape</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-AL/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Holynski et al.</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-Eulerian/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">SLR-SFS</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-SLR-SFS/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+
+
+                        <div class=" row" style="display: flex; justify-content: center; margin-bottom: -30px;">
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: -2px;">Single Image</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-7-1/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Ours</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-7-1/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Animating Landscape</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-AL/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Holynski et al.</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-Eulerian/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">SLR-SFS</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-SLR-SFS/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+
+
+                        <div class=" row" style="display: flex; justify-content: center; margin-bottom: -30px;">
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: -2px;">Single Image</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-7-1/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Ours</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-7-1/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Animating Landscape</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-AL/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Holynski et al.</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-Eulerian/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">SLR-SFS</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-SLR-SFS/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+
+
+                        <div class=" row" style="display: flex; justify-content: center; margin-bottom: -30px;">
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: -2px;">Single Image</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-7-1/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Ours</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-7-1/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Animating Landscape</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-AL/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Holynski et al.</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-Eulerian/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">SLR-SFS</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-SLR-SFS/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+
+
+                        <div class=" row" style="display: flex; justify-content: center; margin-bottom: -30px;">
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: -2px;">Single Image</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-7-1/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Ours</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-7-1/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Animating Landscape</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-AL/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Holynski et al.</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-Eulerian/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">SLR-SFS</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-SLR-SFS/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+
+
+                        <div class=" row" style="display: flex; justify-content: center; margin-bottom: -30px;">
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: -2px;">Single Image</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-7-1/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Ours</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-7-1/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Animating Landscape</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-AL/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Holynski et al.</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-Eulerian/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">SLR-SFS</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-SLR-SFS/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+
+
+                        <div class=" row" style="display: flex; justify-content: center; margin-bottom: -30px;">
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: -2px;">Single Image</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-7-1/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Ours</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-7-1/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Animating Landscape</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-AL/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Holynski et al.</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-Eulerian/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">SLR-SFS</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-SLR-SFS/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+
+
+                        <div class=" row" style="display: flex; justify-content: center; margin-bottom: -30px;">
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: -2px;">Single Image</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-7-1/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Ours</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-7-1/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Animating Landscape</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-AL/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Holynski et al.</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-Eulerian/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">SLR-SFS</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-SLR-SFS/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+
+
+                        <div class=" row" style="display: flex; justify-content: center; margin-bottom: -30px;">
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: -2px;">Single Image</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-7-1/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Ours</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-7-1/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Animating Landscape</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-AL/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Holynski et al.</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-Eulerian/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">SLR-SFS</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-SLR-SFS/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+
+
+
+                        <div class=" row" style="display: flex; justify-content: center; margin-bottom: -30px;">
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: -2px;">Single Image</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-7-1/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Ours</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-7-1/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Animating Landscape</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-AL/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">Holynski et al.</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-Eulerian/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                            <div class="column px-4" style="flex: 1;">
+                                <div class="row text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <p style="font-size: 16px; margin-top: 5px;">SLR-SFS</p>
+                                    <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                        src="./all_results/real-domain/videos/motion-SLR-SFS/00980_00000/video.mp4"
+                                        style="max-width: 100%" type="video/mp4"></video>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+
+
+
+                    </div>
+                </div>
+
+
+                <p></p>
+                <p></p>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- <hr class="divider"> -->
+    <hr style="max-width: 1400px;">
+    <div class="container" style="max-width: 1400px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center" style="margin-bottom: 30px; margin-top: 10px;">Multimodal visualization results</h2>
+                <p></p>
+                <p></p>
+                <div id="singleconceptscroll" class="containershadow"
+                    style="overflow-y:scroll; max-width: 1400px; max-height: 1300px;">
+                    <h4 class="text-left" style="margin-bottom: 30px; margin-top: 10px;">
+                        Human-Object Interaction Actions: XX
+                    </h4>
+
+                    <div class="row">
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">WiFi-CSI-RX1
+                                </p>
+                                <img style="max-width: 100%;"
+                                    src="./all_results/real-domain/optical-flow/motion-7-1/test_latest/images/00980_00000_input_input_image.jpg">
+                            </div>
+                        </div>
+
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">WiFi-CSI-RX2
+                                </p>
+                                <img style="max-width: 100%;"
+                                    src="./all_results/real-domain/optical-flow/motion-7-1/test_latest/images/00980_00000_input_input_image.jpg">
+                            </div>
+                        </div>
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">WiFi-CSI-RX3</p>
+                                <img style="max-width: 100%;"
+                                    src="./all_results/real-domain/optical-flow/motion-7-1/test_latest/images/00980_00000_input_input_image.jpg">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">mmWave-RangeDoppler
+                                </p>
+                                <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                    src="./all_results/artistic-domain/our/0/seed_0/video.mp4" style="width:400px"
+                                    type="video/mp4"></video>
+                            </div>
+                        </div>
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">mmWave-RangeAngle
+                                </p>
+                                <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                    src="./all_results/artistic-domain/our/0/seed_9/video.mp4" style="width:400px"
+                                    type="video/mp4"></video>
+                            </div>
+                        </div>
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">RFID</p>
+                                <img style="max-width: 100%;"
+                                    src="./all_results/real-domain/optical-flow/motion-7-1/test_latest/images/00980_00000_input_input_image.jpg">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">RGB</p>
+                                <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                    src="./all_results/artistic-domain/our/13/seed_23/video.mp4" style="width:400px"
+                                    type="video/mp4"></video>
+                            </div>
+                        </div>
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">Depth</p>
+                                <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                    src="./all_results/artistic-domain/our/14/seed_40/video.mp4" style="width:400px"
+                                    type="video/mp4"></video>
+                            </div>
+                        </div>
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">IR</p>
+                                <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                    src="./all_results/artistic-domain/our/15/seed_94/video.mp4" style="width:400px"
+                                    type="video/mp4"></video>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+
+
+                    <h4 class="text-left" style="margin-bottom: 30px; margin-top: 10px;">
+                        Human-Human Interaction Actions: XX
+                    </h4>
+
+                    <div class="row">
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">WiFi-CSI-RX1
+                                </p>
+                                <img style="max-width: 100%;"
+                                    src="./all_results/real-domain/optical-flow/motion-7-1/test_latest/images/00980_00000_input_input_image.jpg">
+                            </div>
+                        </div>
+
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">WiFi-CSI-RX2
+                                </p>
+                                <img style="max-width: 100%;"
+                                    src="./all_results/real-domain/optical-flow/motion-7-1/test_latest/images/00980_00000_input_input_image.jpg">
+                            </div>
+                        </div>
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">WiFi-CSI-RX3</p>
+                                <img style="max-width: 100%;"
+                                    src="./all_results/real-domain/optical-flow/motion-7-1/test_latest/images/00980_00000_input_input_image.jpg">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">mmWave-RangeDoppler
+                                </p>
+                                <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                    src="./all_results/artistic-domain/our/0/seed_0/video.mp4" style="width:400px"
+                                    type="video/mp4"></video>
+                            </div>
+                        </div>
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">mmWave-RangeAngle
+                                </p>
+                                <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                    src="./all_results/artistic-domain/our/0/seed_9/video.mp4" style="width:400px"
+                                    type="video/mp4"></video>
+                            </div>
+                        </div>
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">RFID</p>
+                                <img style="max-width: 100%;"
+                                    src="./all_results/real-domain/optical-flow/motion-7-1/test_latest/images/00980_00000_input_input_image.jpg">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">RGB</p>
+                                <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                    src="./all_results/artistic-domain/our/13/seed_23/video.mp4" style="width:400px"
+                                    type="video/mp4"></video>
+                            </div>
+                        </div>
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">Depth</p>
+                                <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                    src="./all_results/artistic-domain/our/14/seed_40/video.mp4" style="width:400px"
+                                    type="video/mp4"></video>
+                            </div>
+                        </div>
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">IR</p>
+                                <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                    src="./all_results/artistic-domain/our/15/seed_94/video.mp4" style="width:400px"
+                                    type="video/mp4"></video>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+
+
+                    <h4 class="text-left" style="margin-bottom: 30px; margin-top: 10px;">
+                        Fitness Actions: XX
+                    </h4>
+
+                    <div class="row">
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">WiFi-CSI-RX1
+                                </p>
+                                <img style="max-width: 100%;"
+                                    src="./all_results/real-domain/optical-flow/motion-7-1/test_latest/images/00980_00000_input_input_image.jpg">
+                            </div>
+                        </div>
+
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">WiFi-CSI-RX2
+                                </p>
+                                <img style="max-width: 100%;"
+                                    src="./all_results/real-domain/optical-flow/motion-7-1/test_latest/images/00980_00000_input_input_image.jpg">
+                            </div>
+                        </div>
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">WiFi-CSI-RX3</p>
+                                <img style="max-width: 100%;"
+                                    src="./all_results/real-domain/optical-flow/motion-7-1/test_latest/images/00980_00000_input_input_image.jpg">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">mmWave-RangeDoppler
+                                </p>
+                                <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                    src="./all_results/artistic-domain/our/0/seed_0/video.mp4" style="width:400px"
+                                    type="video/mp4"></video>
+                            </div>
+                        </div>
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">mmWave-RangeAngle
+                                </p>
+                                <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                    src="./all_results/artistic-domain/our/0/seed_9/video.mp4" style="width:400px"
+                                    type="video/mp4"></video>
+                            </div>
+                        </div>
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">RFID</p>
+                                <img style="max-width: 100%;"
+                                    src="./all_results/real-domain/optical-flow/motion-7-1/test_latest/images/00980_00000_input_input_image.jpg">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">RGB</p>
+                                <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                    src="./all_results/artistic-domain/our/13/seed_23/video.mp4" style="width:400px"
+                                    type="video/mp4"></video>
+                            </div>
+                        </div>
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">Depth</p>
+                                <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                    src="./all_results/artistic-domain/our/14/seed_40/video.mp4" style="width:400px"
+                                    type="video/mp4"></video>
+                            </div>
+                        </div>
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">IR</p>
+                                <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                    src="./all_results/artistic-domain/our/15/seed_94/video.mp4" style="width:400px"
+                                    type="video/mp4"></video>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+
+                    <h4 class="text-left" style="margin-bottom: 30px; margin-top: 10px;">
+                        Body Motion Actions: XX
+                    </h4>
+
+                    <div class="row">
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">WiFi-CSI-RX1
+                                </p>
+                                <img style="max-width: 100%;"
+                                    src="./all_results/real-domain/optical-flow/motion-7-1/test_latest/images/00980_00000_input_input_image.jpg">
+                            </div>
+                        </div>
+
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">WiFi-CSI-RX2
+                                </p>
+                                <img style="max-width: 100%;"
+                                    src="./all_results/real-domain/optical-flow/motion-7-1/test_latest/images/00980_00000_input_input_image.jpg">
+                            </div>
+                        </div>
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">WiFi-CSI-RX3</p>
+                                <img style="max-width: 100%;"
+                                    src="./all_results/real-domain/optical-flow/motion-7-1/test_latest/images/00980_00000_input_input_image.jpg">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">mmWave-RangeDoppler
+                                </p>
+                                <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                    src="./all_results/artistic-domain/our/0/seed_0/video.mp4" style="width:400px"
+                                    type="video/mp4"></video>
+                            </div>
+                        </div>
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">mmWave-RangeAngle
+                                </p>
+                                <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                    src="./all_results/artistic-domain/our/0/seed_9/video.mp4" style="width:400px"
+                                    type="video/mp4"></video>
+                            </div>
+                        </div>
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">RFID</p>
+                                <img style="max-width: 100%;"
+                                    src="./all_results/real-domain/optical-flow/motion-7-1/test_latest/images/00980_00000_input_input_image.jpg">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">RGB</p>
+                                <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                    src="./all_results/artistic-domain/our/13/seed_23/video.mp4" style="width:400px"
+                                    type="video/mp4"></video>
+                            </div>
+                        </div>
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">Depth</p>
+                                <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                    src="./all_results/artistic-domain/our/14/seed_40/video.mp4" style="width:400px"
+                                    type="video/mp4"></video>
+                            </div>
+                        </div>
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">IR</p>
+                                <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                    src="./all_results/artistic-domain/our/15/seed_94/video.mp4" style="width:400px"
+                                    type="video/mp4"></video>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+
+
+                    <h4 class="text-left" style="margin-bottom: 30px; margin-top: 10px;">
+                        Human-Computer Interaction Actions: XX
+                    </h4>
+
+                    <div class="row">
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">WiFi-CSI-RX1
+                                </p>
+                                <img style="max-width: 100%;"
+                                    src="./all_results/real-domain/optical-flow/motion-7-1/test_latest/images/00980_00000_input_input_image.jpg">
+                            </div>
+                        </div>
+
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">WiFi-CSI-RX2
+                                </p>
+                                <img style="max-width: 100%;"
+                                    src="./all_results/real-domain/optical-flow/motion-7-1/test_latest/images/00980_00000_input_input_image.jpg">
+                            </div>
+                        </div>
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">WiFi-CSI-RX3</p>
+                                <img style="max-width: 100%;"
+                                    src="./all_results/real-domain/optical-flow/motion-7-1/test_latest/images/00980_00000_input_input_image.jpg">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">mmWave-RangeDoppler
+                                </p>
+                                <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                    src="./all_results/artistic-domain/our/0/seed_0/video.mp4" style="width:400px"
+                                    type="video/mp4"></video>
+                            </div>
+                        </div>
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">mmWave-RangeAngle
+                                </p>
+                                <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                    src="./all_results/artistic-domain/our/0/seed_9/video.mp4" style="width:400px"
+                                    type="video/mp4"></video>
+                            </div>
+                        </div>
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">RFID</p>
+                                <img style="max-width: 100%;"
+                                    src="./all_results/real-domain/optical-flow/motion-7-1/test_latest/images/00980_00000_input_input_image.jpg">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">RGB</p>
+                                <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                    src="./all_results/artistic-domain/our/13/seed_23/video.mp4" style="width:400px"
+                                    type="video/mp4"></video>
+                            </div>
+                        </div>
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">Depth</p>
+                                <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                    src="./all_results/artistic-domain/our/14/seed_40/video.mp4" style="width:400px"
+                                    type="video/mp4"></video>
+                            </div>
+                        </div>
+                        <div class="column px-4" style="margin: auto;width: 33%;">
+                            <div class="row text-center"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                                <p style="font-family: Chalkduster; font-size: 16px; margin-top: 5px;">IR</p>
+                                <video autoplay="autoplay" controls="controls" loop="loop" muted="muted"
+                                    src="./all_results/artistic-domain/our/15/seed_94/video.mp4" style="width:400px"
+                                    type="video/mp4"></video>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+                <p></p>
+                <p></p>
+            </div>
+        </div>
+    </div>
+    <hr style="max-width: 1400px;">
+    <h2 class="text-center" style="margin-bottom: 30px; margin-top: 10px;">Statistics</h2>
+    <div class="container" style="max-width: 1400px;">
+        <div class="row teaser" style="justify-content: center;">
+            <img src="./images/Accuacy.png" style="width: 80%;">
+        </div>
+    </div>
+    <hr style="max-width: 1400px;">
+    <div class="highlight-clean" style="padding-bottom: 0px; padding-top: 10px;">
+                <section id="section1">
+                    <h2 class="text-center" style="margin-bottom: 10px;">Download our dataset</h2>
+                </section>
+                <div class="buttons" style="margin-bottom: 8px;">
+                    <a class="btn btn-light" role="button" href="#">
+                        <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 15.9853L15.182 12.8033L14.1213 11.7427L12.75 13.114L12.75 5.25L11.25 5.25L11.25 13.114L9.8787 11.7427L8.81804 12.8033L12 15.9853ZM12 13.864L12 13.864L12.0001 13.864L12 13.864Z" fill="#080341"></path> <path d="M18 17.25L18 18.75L6 18.75L6 17.25L18 17.25Z" fill="#080341"></path> </g></svg>WiFi dataset
+                    </a>
+
+                    <a class="btn btn-light" role="button" href="#">
+                        <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 15.9853L15.182 12.8033L14.1213 11.7427L12.75 13.114L12.75 5.25L11.25 5.25L11.25 13.114L9.8787 11.7427L8.81804 12.8033L12 15.9853ZM12 13.864L12 13.864L12.0001 13.864L12 13.864Z" fill="#080341"></path> <path d="M18 17.25L18 18.75L6 18.75L6 17.25L18 17.25Z" fill="#080341"></path> </g></svg>RFID dataset
+                    </a>
+
+                    <a class="btn btn-light" role="button" href="#">
+                        <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 15.9853L15.182 12.8033L14.1213 11.7427L12.75 13.114L12.75 5.25L11.25 5.25L11.25 13.114L9.8787 11.7427L8.81804 12.8033L12 15.9853ZM12 13.864L12 13.864L12.0001 13.864L12 13.864Z" fill="#080341"></path> <path d="M18 17.25L18 18.75L6 18.75L6 17.25L18 17.25Z" fill="#080341"></path> </g></svg>mmWave dataset
+                    </a>
+
+                    <a class="btn btn-light" role="button" href="#">
+                        <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 15.9853L15.182 12.8033L14.1213 11.7427L12.75 13.114L12.75 5.25L11.25 5.25L11.25 13.114L9.8787 11.7427L8.81804 12.8033L12 15.9853ZM12 13.864L12 13.864L12.0001 13.864L12 13.864Z" fill="#080341"></path> <path d="M18 17.25L18 18.75L6 18.75L6 17.25L18 17.25Z" fill="#080341"></path> </g></svg>Kinect dataset
+                    </a>
+                    
+                </div>
+    </div>
+    <hr style="max-width: 1400px;">
+    <div class="container" style="max-width: 1400px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Citation</h2>
+                <code>
+                    @inproceedings{XXXX,<br>
+                    &nbsp; title={XRF55: A Radio Frequency Dataset for Human Indoor Action Analysis
+                    },<br>
+                    &nbsp; author={Fei Wang, Yizhe Lv, Mengdie Zhu, Han Ding},<br>
+                    &nbsp; journal={arXiv preprint arXiv:XXXX.XXXXX},<br>
+                    &nbsp; year   = {2024},<br>
+                }</code>
+            </div>
+        </div>
+    </div>
+
+    <hr style="max-width: 1400px;">
+    <div class="container" style="max-width: 1400px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Related and Concurrent Works</h2>
+                <h5>
+                    <ul>
+                        <li>Siming Fan, Jingtan Piao, Chen Qian, Kwan-Yee Lin, and Hongsheng Li. 
+                            <a href="https://slr-sfs.github.io/"> Simulating Fluids in Real-World Still Images. </a> ICCV
+                            2023. </li><br>
+
+                        <li>Aniruddha Mahapatra and Kuldeep Kulkarni. <a href="https://controllable-cinemagraphs.github.io/">
+                            Controllable Animation of Fluid Elements in Still Images.</a> CVPR 2022.</li><br>
+
+                        <li>Aleksander Holynski, Brian Curless, Steven M. Seitz, and Richard Szeliski. <a
+                                href="https://energy-based-model.github.io/Compositional-Visual-Generation-with-Composable-Diffusion-Models/">
+                                Animating Pictures with Eulerian Motion Fields.</a> CVPR 2021.</li><br>
+                    </ul>
+                </h5>
+            </div>
+        </div>
+    </div>
+
+    <hr style="max-width: 1400px;">
+    <div class="container" style="max-width: 1400px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Acknowledgements</h2>
+                <p>
+                    We are also grateful to Nupur Kumari, Gaurav Parmar, Or Patashnik, Songwei Ge, Sheng-Yu Wang, Chonghyuk (Andrew) Song, 
+                    Daohan (Fred) Lu, Richard Zhang, and Phillip Isola for fruitful discussions. This work is partly supported by Snap Inc. 
+                    and was partly done while Aniruddha was an intern at Snap Inc.
                     <br>
-			  </center></tr>
-		  </table>
-          <br>
-		  <hr>
-          
-          <center><h1>Slides and network structure</h1></center>
-     		  <br>
-     		  <table align=center width=1100px>
-     			  <tr>
-     	              <td width=300px>
-     					<center>
-     						<span style="font-size:22px"><a href="images/XYZ55.pptx">Slides</a></span><br>
-                             <div class="slideshow-container">
-                                <div class="mySlides fade">
-                                  <div class="numbertext">1 / 5</div>
-                                  <img decoding="async" src="images/s1.JPG" style="width:100%">
-                                  <div class="text">文本 1</div>
-                                </div>
-                               
-                                <div class="mySlides fade">
-                                  <div class="numbertext">2 / 5</div>
-                                  <img decoding="async" src="images/s2.JPG" style="width:100%">
-                                  <div class="text">文本 2</div>
-                                </div>
-                               
-                                <div class="mySlides fade">
-                                  <div class="numbertext">3 / 5</div>
-                                  <img decoding="async" src="images/s3.JPG" style="width:100%">
-                                  <div class="text">文本 3</div>
-                                </div>
-                                <div class="mySlides fade">
-                                    <div class="numbertext">4 / 5</div>
-                                    <img decoding="async" src="images/s4.JPG" style="width:100%">
-                                    <div class="text">文本 4</div>
-                                  </div>
-                                <div class="mySlides fade">
-                                    <div class="numbertext">5 / 5</div>
-                                    <img decoding="async" src="images/s5.JPG" style="width:100%">
-                                    <div class="text">文本 5</div>
-                                  </div>
-                                <a class="prev" onclick="plusSlides(-1)">❮</a>
-                                <a class="next" onclick="plusSlides(1)">❯</a>
-                              </div>
-                              <br>
-                        </center>
-     	              </td>
-
-     	              <td width=300px>
-     					<center>
-     						<span style="font-size:22px"><a href='images/network.png'>Network structure</a></span><br>
-     	                	<a href="images/network.png"><img src="images/network.png" width = "400px"></a><br>
-						<br>
-						<div style="width:400px; text-align:left">Great explanation by Christopher Hesse, also documenting his <a href="https://github.com/affinelayer/pix2pix-tensorflow">tensorflow port</a> of our code.</div>
-			      </center>
-     	              </td>
-
-                   </tr>
-     		  </table>
-		  <br><br>
-          <hr>
-	<table align=center width=1100px>
-		  <tr>
-              <td width=400px>
-     					<left>
-      		  <center><h1>Prospect </h1></center>
-              People can use our dataset for many creative applications,  due to the synchronized Kinect, we envision XRF55 will support and facilitate the exploration of action detection, action segmentation, pose estimation, human parsing, mesh reconstruction<br><br>
-
-      		  <table align=center width=1100px>
-							<tr>
-      	              <td width=300px>
-      					<center>
-      						<span style="font-size:22px"><a href='https://www.nvidia.com/en-us/deep-learning-ai/ai-art-gallery/artists/scott-eaton/'>Human Allocation of Space</a></span><br>
-      	                	<a href="https://www.nvidia.com/en-us/deep-learning-ai/ai-art-gallery/artists/scott-eaton/"><img src="images/color_palettes.jpg" width = "250px"></a><br>
-      					<div style="width:250px; text-align:left; font-size:14px"><a href="http://www.scott-eaton.com/">Scott Eaton</a> uses a customized version of pix2pix as a tool in his artwork, for example training a net to <a href="https://vimeo.com/345881421">translate from sketches and brush strokes to 3D renderings</a>. The sculpture above is an actual brozne cast derived from one of Scott's translated designs. You can find more of his AI-empowered artwork <a href="http://www.scott-eaton.com/category/creativeai">here</a>.</div></center>
-      	              </td>
-
-      	              <td width=300px>
-      					<center>
-      						<span style="font-size:22px"><a href='https://vimeo.com/260612034'>Learning to See: Gloomy Sunday</a></span><br>
-      	                	<a href="https://vimeo.com/260612034"><img src="images/color_palettes.jpg" width = "250px"></a><br>
-      					<div style="width:250px; text-align:left; font-size:14px"><a href="http://www.memo.tv/">Memo Akten</a> used pix2pix to create the very compelling music video linked above, in which common household items, like a powercord, are moved around in a pantomine of crashing waves and blooming flowers. Then a pix2pix-based model translates the pantomine into renderings of the imagined objects.</div></center>
-      	              </td>
-
-      	              <td width=300px>
-      					<center>
-      						<span style="font-size:22px"><a href='https://nono.ma/suggestive-drawing'>Suggestive Drawing</a></span><br>
-      	                	<a href="https://nono.ma/suggestive-drawing"><img src="images/color_palettes.jpg" width = "250px"></a><br>
-      					<div style="width:250px; text-align:left; font-size:14px"><a href="https://nono.ma/">Nono Martinez Alonso</a> used pix2pix for his masters thesis on human-AI collaboration for design. Different pix2pix models are used as aids for a human designer, where they "suggest" extensions, refinements, and completions of the designer's sketches.</div></center>
-      	              </td>
-
-              </tr>
-										
-      			  <tr>
-      	              <td width=300px>
-												<br>
-      					<center>
-      						<span style="font-size:22px"><a href='https://twitter.com/search?vertical=default&q=edges2cats&src=typd'>#edges2cats</a></span><br>
-      	                	<a href="https://twitter.com/search?vertical=default&q=edges2cats&src=typd"><img src="images/color_palettes.jpg" width = "250px"></a><br>
-      					<div style="width:250px; text-align:left; font-size:14px"><a href="https://twitter.com/christophrhesse?lang=en">Christopher Hesse</a> trained our model on converting edge maps to photos of cats, and included this in his <a href="https://affinelayer.com/pixsrv/">interactive demo</a>. Apparently, this is what the Internet wanted most, and #edges2cats briefly <a href="https://www.youtube.com/watch?v=vbuE5CLRCDY">went viral</a>. The above cats were designed by Vitaly Vidmirov (<a href="https://twitter.com/vvid/status/834976420942204933">@vvid</a>).</div></center>
-      	              </td>
-
-      	              <td width=300px>
-      					<center>
-      						<span style="font-size:22px"><a href='https://www.youtube.com/watch?v=af_9LXhcebY'>Alternative Face</a></span><br>
-      	                	<a href="https://www.youtube.com/watch?v=af_9LXhcebY"><img src="images/color_palettes.jpg" width = "250px"></a><br>
-      					<div style="width:250px; text-align:left; font-size:14px"><a href="https://quasimondo.com/">Mario Klingemann</a> used our code to translate the appearance of French singer Francoise Hardy onto Kellyanne Conway's infamous "alternative facts" interview. Interesting articles about it can be read <a href="http://nymag.com/selectall/2017/03/pix2pix-cat-drawing-tool-is-ai-at-its-best.html">here</a> and <a href="http://www.alphr.com/art/1005324/alternative-face-the-machine-that-puts-kellyanne-conway-s-words-into-a-french-singer-s">here</a>.</div></center>
-      	              </td>
-
-      	              <td width=300px>
-      					<center>
-      						<span style="font-size:22px"><a href='https://twitter.com/brannondorsey/status/808461108881268736'>Person-to-Person</a></span><br>
-      	                	<a href="https://twitter.com/brannondorsey/status/808461108881268736"><img src="images/color_palettes.jpg" width = "250px"></a><br>
-      					<div style="width:250px; text-align:left; font-size:14px"><a href="https://brannondorsey.com/">Brannon Dorsey</a> recorded himself mimicking frames from a video of Ray Kurzweil giving a talk. He then used this data to train a Dorsey&rarr;Kurzweil translator, allowing him to become a kind of puppeter in control of Kurzweil's appearance.</div></center>
-      	              </td>
-
-                    </tr>
-
-                    <tr>
-        	              <td width=300px>
-                              <br>
-        					<center>
-        						<span style="font-size:22px"><a href='https://twitter.com/bgondouin/status/818571935529377792'>Interactive Anime</a></span><br>
-        	                	<a href="https://twitter.com/bgondouin/status/818571935529377792"><img src="images/color_palettes.jpg" width = "250px"></a><br>
-        					<div style="width:250px; text-align:left; font-size:14px"><a href="https://bgon.github.io/">Bertrand Gondouin</a> trained our method to translate sketches&rarr;Pokemon, resulting in an interactive drawing tool.</div></center>
-        	              </td>
-
-        	              <td width=300px>
-                              <br>
-        					<center>
-        						<span style="font-size:22px"><a href='http://www.k4ai.com/imageops/index.html'>Background masking</a></span><br>
-        	                	<a href="http://www.k4ai.com/imageops/index.html"><img src="images/color_palettes.jpg" width = "250px"></a><br>
-        					<div style="width:250px; text-align:left; font-size:14px"><a href="https://twitter.com/kaihuchen?lang=en">Kaihu Chen</a> performed <a href="http://www.k4ai.com/tag/gan/index.html">a number of interesting experiments</a> using our method, including getting it to mask out the background of a portrait as shown above.</div></center>
-        	              </td>
-
-      	              <td width=300px>
-                          <br>
-      					<center>
-      						<span style="font-size:22px"><a href='http://colormind.io/blog/'>Color palette completion</a></span><br>
-      	                	<a href="http://colormind.io/blog/"><img src="images/color_palettes.jpg" width = "250px"></a><br>
-      					<div style="width:250px; text-align:left; font-size:14px"><a href="http://colormind.io/blog/">Colormind</a> adapted our code to predict a complete 5-color palette given a subset of the palette as input. This application stretches the definition of what counts as "image-to-image translation" in an exciting way: if you can visualize your input/output data as images, then image-to-image methods are applicable! (not that this is necessarily the best choice of representation, just one to think about.)</div></center>
-      	              </td>
-
-                    </tr>
-      		  </table>
-              <br>
-        </td>
-    </tr>
-</table>
-<br>
-<hr>
-
-  		  <table align=center width=1100px>
-  			  <tr>
-  	              <td>
-  					<left>
-	  		  <center><h1>Acknowledgements</h1></center>
-					 <center>Thanks for watching.</center>
-			</left>
-		</td>
-			 </tr>
-		</table>
-
-		<br><br>
+                    The website template is taken from <a href="https://www.cs.cmu.edu/~custom-diffusion/">Custom
+                        Diffusion</a> (which was built on<a href="https://dreamfusion3d.github.io/index.html">
+                        DreamFusion</a>'s project page). The text editor used in the demo video has been taken from <a
+                        href="https://rich-text-to-image.github.io/">Rich Text-to-Image</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function scrollToSection(sectionId) {
+            var section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
 </body>
+
 </html>
-<script>
-    var slideIndex = 1;
-showSlides(slideIndex);
- 
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
- 
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
- 
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1} 
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none"; 
-  }
-  for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block"; 
-  dots[slideIndex-1].className += " active";
-}
-</script>
