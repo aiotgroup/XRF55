@@ -913,3 +913,7 @@ hr.divider {
     display: block;
     float: left;
 }
+
+.font-size-h5 {
+    font-size: 1.1rem;
+}
