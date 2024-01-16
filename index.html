@@ -136,8 +136,8 @@
 
 
     <hr style="max-width: 1400px;">
-    <h2 class="text-center" style="margin-bottom: 30px; margin-top: 10px;">Hardware diagram</h2>
-    <div class="container" style="max-width: 1400px; height: 310px;">
+    <h2 class="text-center" style="margin-bottom: 20px; margin-top: 10px;">Hardwares</h2>
+    <div class="container" style="max-width: 1400px; height: 700px;">
         <div style="display: flex;">
             <div style="flex: 1;">
                 <div class="row text-center"
@@ -168,10 +168,16 @@
                                 style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
                     <p style="font-family: 'Source Sans Pro', Calibri, Candara, Arial, sans-serif; font-size: 18px; margin-top: 5px; font-weight: 350">Kinect
                     </p>
-                    <img src="./images/Kinect_device.webp" style="width: 90%; margin-left: 30px;">
+                    <img src="./images/Kinect_device.jpg" style="width: 90%; margin-left: 30px; margin-top: 30px;">
                 </div>
             </div>
         </div>
+        <p>
+            &nbsp;&nbsp;• Wi-Fi transceivers: We use one Thinkpad X201 laptop with one Intel 5300 wireless network card as the Wi-Fi transmitter, and use three other sets as the Wi-Fi receivers. The laptops are positioned at the four corners of a rectangle as shown in first figure, inspired by the placement strategy outlined in Widar3.0. This arrangement creates a larger rectangular sensing area. Their height is set at 1.2 meters, based on observations from ARIL, which is found to be effective for recognizing full-body actions. The transmitter is set to broadcast packets with a speed of 200 packets per second through one antenna under High Throughput (IEEE 802.11n) bitrates at channel 128 (5.64GHz). Every receiver monitors this channel with three antennas, thus there are 9 Wi-Fi links in total. We install a Wi-Fi tool in the transceivers to conduct channel estimation and obtain the channel state information (CSI) of 30 orthogonal frequency-division multiplexing (OFDM) subcarriers, leading to the recorded CSI with the size of (200𝑡) × 1 × 3 × 3 × 30, where 𝑡 is for the recording time in seconds.<br>
+            &nbsp;&nbsp;• RFID devices: We use an Impinj Speedway R420 RFID reader with an RFMax S9028PCLJ directional antenna to broadcast the QUERY command 30 times per second at the frequency of 928.33MHz. We deploy 23 passive RFID tags branded Hansense to backscatter their Electronic Product Code (EPC) to the reader. The reader then can obtain the phase of each tag with the backscattered EPC, leading to the phase series with the size of (30𝑡) × 23, where 𝑡 is for the recording time in seconds. <br>
+            &nbsp;&nbsp;• Millimeter-wave radar: We use a TI IWR6843ISK radar to generate frequency-modulated continuous wave (FMCW) signals at the frequency of 60GHz-64GHz. The radar has three transmitting antennas and four receiving antennas. The transmitting parameter is set to 20 frames per second and 64 chirps in each frame. The ADC sampling rate is 256. Meanwhile, we mount the radar on a TI DCA1000EVM board to record raw radar data in real time, leading to the raw radar data with the size of (20𝑡) × 3 × 4 × 256 × 64. Then we apply Doppler Fast Fourier Transform (FFT) and Angle FFT over the raw data to obtain Range-Doppler Heatmaps and Range-Angle Heatmaps with the size of (20𝑡) × 256 × 64. After that, we concatenate these heatmaps along the range dimension to (20𝑡) × 256 × 128.<br>
+            &nbsp;&nbsp;• Azure Kinect: The Kinect records RGB, depth, and infrared images with 30 frames per second in 720P.<br>
+        </p>
     </div>
 
 
@@ -181,11 +187,11 @@
         <div style="display: flex;">
             <div style="flex: 1;">
                 <p>
-                    We recruited 39 subjects and let them repeat each action 20 times at the sensing area. We set the action-conducting window as 5 seconds for subjects to finish every repeat. These settings result in XRF55 with 42.9K samples that last 59h35min.
+                    We recruited 39 subjects and let them repeat each action 20 times at the sensing area. We collect XRF55 in four different scenes. In scene 1, we record action samples of RFID, Wi-Fi, mmWave radar, and Kinect clips from 30 subjects. Besides, we record action clips from 3 subjects in the other three scenes respectively.We set the action-conducting window as 5 seconds for subjects to finish every repeat. These settings result in XRF55 with 42.9K samples that last 59h35min.
                 </p> 
                 <br>
                 <p>
-                    Each sample is a quadruple comprised of Wi-Fi∈ 1000 × 1 × 3 × 3 × 30, RFID∈ 150 × 23, mmWave radar∈ 100 × 256 × 128, and corresponding synchronized videos from the Kinect. Further, we reshape or downsample the quadruple to reduce the training overhead to dimensions as shown in right table.
+                    Each sample is a quadruple comprised of Wi-Fi &isin; 1000 × 1 × 3 × 3 × 30, RFID &isin; 150 × 23, mmWave radar &isin; 100 × 256 × 128, and corresponding synchronized videos from the Kinect. Further, we reshape or downsample the quadruple to reduce the training overhead to dimensions as shown in right table.
                 </p>
                 <br>
                 <p>
@@ -205,7 +211,7 @@
     <div class="container" style="max-width: 1400px;">
         <div class="row">
             <div class="col-md-12">
-                <h2 class="text-center" style="margin-bottom: 30px; margin-top: 10px;">Multimodal visualization results</h2>
+                <h2 class="text-center" style="margin-bottom: 30px; margin-top: 10px;">Multimodal visualization samples</h2>
                 <p></p>
                 <p></p>
                 <div id="singleconceptscroll" class="containershadow"
@@ -747,16 +753,17 @@
                 <div style="display: flex; justify-content: center;">
                     <p style="margin-bottom: 30px; margin-bottom: 30px; max-width: 1400px;">
                         In all, XRF55 includes 55 human indoor action classes which we categorize into 5 types: Human-Object Interaction, Human-Human Interaction, Fitness, Body Motion, and Human-Computer Interaction.<br>
+                    
 
-                        &nbsp;&nbsp;• 15 Human-Object Interaction Actions. Whole-home daily: carrying weight, mopping the floor, using a phone, throwing something, picking something, putting something on the table; Kitchen: cutting something; Dress: wearing a hat, putting on clothing; Bathroom: blowing dry hair, combing hair, brushing teeth; Healthcare: drinking, eating, and smoking.<br>
+                        &nbsp;&nbsp;• <span style="color: rgb(255, 0, 0);">15 Human-Object Interaction Actions.</span> Whole-home daily: carrying weight, mopping the floor, using a phone, throwing something, picking something, putting something on the table; Kitchen: cutting something; Dress: wearing a hat, putting on clothing; Bathroom: blowing dry hair, combing hair, brushing teeth; Healthcare: drinking, eating, and smoking.<br>
 
-                        &nbsp;&nbsp;• 7 Human-Human Interaction Actions. Social actions: shaking hands, hugging, handing something to someone; Violence actions for applications of domestic violence and invasion detection: kicking someone, hitting someone with something, choking someone’s neck, and pushing someone.<br>
+                        &nbsp;&nbsp;• <span style="color: rgb(255,140,0);">7 Human-Human Interaction Actions.</span> Social actions: shaking hands, hugging, handing something to someone; Violence actions for applications of domestic violence and invasion detection: kicking someone, hitting someone with something, choking someone’s neck, and pushing someone.<br>
 
-                        &nbsp;&nbsp;• 8 Fitness Actions. With equipment: hula hooping, weightlifting, jumping rope; Without equipment: body weight squats, Tai Chi, boxing, jumping jack, and high leg lifting.<br>
+                        &nbsp;&nbsp;• <span style="color: rgb(144,2,154);">8 Fitness Actions.</span> With equipment: hula hooping, weightlifting, jumping rope; Without equipment: body weight squats, Tai Chi, boxing, jumping jack, and high leg lifting.<br>
 
-                        &nbsp;&nbsp;• 14 Body Motion Actions. Whole-home daily: waving, clapping hands, jumping, walking, turning, running, sitting down, standing up; Healthcare: falling on the floor, stretching, patting on the shoulder; Musical instruments: playing Er-Hu, playing Ukulele, playing drum.<br>
+                        &nbsp;&nbsp;• <span style="color: rgb(0,0,255);">14 Body Motion Actions.</span> Whole-home daily: waving, clapping hands, jumping, walking, turning, running, sitting down, standing up; Healthcare: falling on the floor, stretching, patting on the shoulder; Musical instruments: playing Er-Hu, playing Ukulele, playing drum.<br>
                         
-                        &nbsp;&nbsp;• 11 Human-Computer Interaction Actions. Hand gestures: pushing, pulling, swiping left, swiping right, swiping up, swiping down, drawing a circle, drawing a cross; When hands are not free: foot stamping, shaking head, and nodding.
+                        &nbsp;&nbsp;• <span style="color: rgb(20,184,105);">11 Human-Computer Interaction Actions.</span> Hand gestures: pushing, pulling, swiping left, swiping right, swiping up, swiping down, drawing a circle, drawing a cross; When hands are not free: foot stamping, shaking head, and nodding.
                     </p>
                 </div>
 
@@ -1394,7 +1401,7 @@
     <div class="container" style="max-width: 1400px;">
         <div class="row">
             <div class="col-md-12">
-                <h2>Related and Concurrent Works</h2>
+                <h2>Related and Concurrent Work (Datasets)</h2>
                 <h5 class="font-size-h5">
                     <ul>
                         <li>
