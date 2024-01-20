@@ -917,3 +917,32 @@ hr.divider {
 .font-size-h5 {
     font-size: 1.1rem;
 }
+
+table>caption {
+    margin: 0 0 5px 0;
+}
+
+table>thead>tr>th {
+    border-top: 2px solid #000;
+    border-bottom: 1px solid #000;
+}
+
+table>tbody>tr:last-child>td {
+    border-bottom: 2px solid #000;
+}
+
+table>thead>tr>th {
+    padding: 0px 20px;
+    text-align: left;
+    font-family: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+}
+
+table>tbody>tr>td {
+    padding: 0px 20px;
+    text-align: left;
+    font-family: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+}
+
+table>tbody>tr:last-child>td {
+    padding: 2px 20px;
+}
