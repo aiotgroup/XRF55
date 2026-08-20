@@ -1504,56 +1504,81 @@
                 <section id="section1">
                     <h2 class="text-center" style="margin-bottom: 10px;">Download our dataset</h2>
                 </section>
-                <div class="buttons" style="margin-bottom: 8px; display: flex; flex-direction: column;">
-                    <div>
-                        <a class="btn btn-light" role="button" href="https://www.kaggle.com/datasets/xrfdataset/xrf55">
-                            <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 15.9853L15.182 12.8033L14.1213 11.7427L12.75 13.114L12.75 5.25L11.25 5.25L11.25 13.114L9.8787 11.7427L8.81804 12.8033L12 15.9853ZM12 13.864L12 13.864L12.0001 13.864L12 13.864Z" fill="#080341"></path> <path d="M18 17.25L18 18.75L6 18.75L6 17.25L18 17.25Z" fill="#080341"></path> </g></svg>XRF55 dataset part1
-                        </a>
-                        <a class="btn btn-light" role="button" href="https://www.kaggle.com/datasets/whisperyi/xrf55-2">
-                            <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 15.9853L15.182 12.8033L14.1213 11.7427L12.75 13.114L12.75 5.25L11.25 5.25L11.25 13.114L9.8787 11.7427L8.81804 12.8033L12 15.9853ZM12 13.864L12 13.864L12.0001 13.864L12 13.864Z" fill="#080341"></path> <path d="M18 17.25L18 18.75L6 18.75L6 17.25L18 17.25Z" fill="#080341"></path> </g></svg>XRF55 dataset part2
-                        </a>
-                        <a class="btn btn-light" role="button" href="https://www.kaggle.com/datasets/xrfdataset/xrf55-rawdata">
-                            <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 15.9853L15.182 12.8033L14.1213 11.7427L12.75 13.114L12.75 5.25L11.25 5.25L11.25 13.114L9.8787 11.7427L8.81804 12.8033L12 15.9853ZM12 13.864L12 13.864L12.0001 13.864L12 13.864Z" fill="#080341"></path> <path d="M18 17.25L18 18.75L6 18.75L6 17.25L18 17.25Z" fill="#080341"></path> </g></svg>XRF55 WiFi&RFID rawdataset
-                        </a>
+                <div class="container" style="max-width: 1200px; margin-top: 20px;">
+                    <p style="color: #000000; text-align: left; margin-bottom: 14px;">
+                        Dataset access is organized by modality and hosting platform. Some large subsets are split across multiple Kaggle entries due to upload size limits.
+                    </p>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" style="background: #ffffff; color: #000000; text-align: left;">
+                            <thead>
+                                <tr>
+                                    <th style="width: 20%;">Data</th>
+                                    <th style="width: 24%;">SDP</th>
+                                    <th style="width: 28%;">Kaggle</th>
+                                    <th style="width: 28%;">Note</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>mmWave, WiFi, and RFID</td>
+                                    <td><a href="https://www.sdp8.org/Dataset?id=705e08e7-637e-49a1-aff1-b2f9644467ae">Sensing Dataset Platform</a></td>
+                                    <td>
+                                        <a href="https://www.kaggle.com/datasets/xrfdataset/xrf55">Part 1</a><br>
+                                        <a href="https://www.kaggle.com/datasets/whisperyi/xrf55-2">Part 2</a>
+                                    </td>
+                                    <td>Part 1 includes action samples from 3 individuals in scenes 2, 3, and 4, and 11 individuals in scene 1 (92.29 GB). Part 2 includes action samples from 19 individuals in scene 1 (92.29 GB).</td>
+                                </tr>
+                                <tr>
+                                    <td>WiFi and RFID raw data</td>
+                                    <td>-</td>
+                                    <td><a href="https://www.kaggle.com/datasets/xrfdataset/xrf55-rawdata">Kaggle</a></td>
+                                    <td>46.06 GB.</td>
+                                </tr>
+                                <tr>
+                                    <td>mmWave raw dataset</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>The previous network-disk link has expired and is temporarily unavailable.</td>
+                                </tr>
+                                <tr>
+                                    <td>Video RGB</td>
+                                    <td>-</td>
+                                    <td><a href="https://www.kaggle.com/datasets/airslab2020/xrf55-rgb-depth-ir">Kaggle</a></td>
+                                    <td>RGB videos from 19 participants who agreed to public release, 1280x720, downsampled to 15 fps, 43.36 GB.</td>
+                                </tr>
+                                <tr>
+                                    <td>Video Depth</td>
+                                    <td>-</td>
+                                    <td>
+                                        <a href="https://www.kaggle.com/datasets/airslab2020/xrf55-depth-scene1">Part 1</a><br>
+                                        <a href="https://www.kaggle.com/datasets/airslab2020/xrf55-depth-scenes2-4">Part 2</a>
+                                    </td>
+                                    <td>Part 1 contains scene 1 (174.74 GB). Part 2 contains scenes 2, 3, and 4 (42.5 GB). Downsampled to 15 fps, 512x512.</td>
+                                </tr>
+                                <tr>
+                                    <td>Video IR</td>
+                                    <td>-</td>
+                                    <td>
+                                        <a href="https://www.kaggle.com/datasets/airslab2020/xrf55-ir-scene1-part1">Part 1</a><br>
+                                        <a href="https://www.kaggle.com/datasets/airslab2020/xrf55-ir-scene1-part2-scenes2-4">Part 2</a>
+                                    </td>
+                                    <td>Part 1 contains infrared clips from scene 1 subjects 01 through 19 (189.1 GB). Part 2 contains scene 1 subjects 20 through 30 and all subjects in scenes 2 through 4 (193.37 GB). Downsampled to 15 fps, 512x512.</td>
+                                </tr>
+                                <tr>
+                                    <td>2D pose, 3D pose, and human mesh</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>Processing is in progress and will be uploaded after completion.</td>
+                                </tr>
+                                <tr>
+                                    <td>mmWave point cloud</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>The data exists on the SDP platform, but it was uploaded as individual files instead of a single zip archive and cannot currently be shared. SDP has indicated that access may be available after a website upgrade.</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div style="text-align: left; display: flex; justify-content: center;">
-                        <div style="width: 833px;">
-                            <p style="color: #000000;">
-                            Due to Kaggle upload size limitations, we split the dataset into two parts:
-                            </p>
-                            <p style="color: #000000;">
-                                XRF55 dataset part1 includes action samples of 3 individuals in scenes 2, 3, and 4, and 11 individuals in scene 1.
-                            </p>
-                            <p style="color: #000000;">
-                                XRF55 dataset part2 includes the action samples of 19 individuals in scene 1.
-                            </p>
-                            <p style="color: #000000;">
-                                XRF55 WiFi&RFID rawdataset includes action samples for all scenes.
-                            </p>
-                            <p style="color: #000000;">
-                                To request Kinect videos, please send email to feynmanw at xjtu.edu.cn.
-                            </p>
-                            <a href="http://www.sdp8.org/Dataset?id=705e08e7-637e-49a1-aff1-b2f9644467ae">
-                               You can also download 2D Human Pose and Videos Datasets in the Sensing Dataset Platform
-                            </a> 
-                        </div>
-                    </div>
-                    <!-- <a class="btn btn-light" role="button" href="#">
-                        <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 15.9853L15.182 12.8033L14.1213 11.7427L12.75 13.114L12.75 5.25L11.25 5.25L11.25 13.114L9.8787 11.7427L8.81804 12.8033L12 15.9853ZM12 13.864L12 13.864L12.0001 13.864L12 13.864Z" fill="#080341"></path> <path d="M18 17.25L18 18.75L6 18.75L6 17.25L18 17.25Z" fill="#080341"></path> </g></svg>WiFi dataset
-                    </a>
-
-                    <a class="btn btn-light" role="button" href="#">
-                        <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 15.9853L15.182 12.8033L14.1213 11.7427L12.75 13.114L12.75 5.25L11.25 5.25L11.25 13.114L9.8787 11.7427L8.81804 12.8033L12 15.9853ZM12 13.864L12 13.864L12.0001 13.864L12 13.864Z" fill="#080341"></path> <path d="M18 17.25L18 18.75L6 18.75L6 17.25L18 17.25Z" fill="#080341"></path> </g></svg>RFID dataset
-                    </a>
-
-                    <a class="btn btn-light" role="button" href="#">
-                        <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 15.9853L15.182 12.8033L14.1213 11.7427L12.75 13.114L12.75 5.25L11.25 5.25L11.25 13.114L9.8787 11.7427L8.81804 12.8033L12 15.9853ZM12 13.864L12 13.864L12.0001 13.864L12 13.864Z" fill="#080341"></path> <path d="M18 17.25L18 18.75L6 18.75L6 17.25L18 17.25Z" fill="#080341"></path> </g></svg>mmWave dataset
-                    </a>
-
-                    <a class="btn btn-light" role="button" href="#">
-                        <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 15.9853L15.182 12.8033L14.1213 11.7427L12.75 13.114L12.75 5.25L11.25 5.25L11.25 13.114L9.8787 11.7427L8.81804 12.8033L12 15.9853ZM12 13.864L12 13.864L12.0001 13.864L12 13.864Z" fill="#080341"></path> <path d="M18 17.25L18 18.75L6 18.75L6 17.25L18 17.25Z" fill="#080341"></path> </g></svg>Kinect dataset
-                    </a> -->
-                    
                 </div>
     </div>
     <hr style="max-width: 1400px;">
